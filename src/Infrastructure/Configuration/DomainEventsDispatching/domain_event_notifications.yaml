@@ -1,0 +1,2 @@
+parameters:
+    app.domain_event_notifications: []

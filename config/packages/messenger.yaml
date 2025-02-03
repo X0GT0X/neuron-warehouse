@@ -1,0 +1,43 @@
+framework:
+    messenger:
+        # Uncomment this (and the failed transport below) to send failed messages to this transport for later handling.
+        # failure_transport: failed
+
+        default_bus: command.bus
+        buses:
+            command.bus: ~
+            query.bus: ~
+            event.bus:
+                default_middleware: allow_no_handlers
+
+        transports:
+            async: 'sync://' # TODO: change to AMQP or Kafka
+            sync: 'sync://'
+            outbox:
+                dsn: '%env(OUTBOX_TRANSPORT_DSN)%'
+                options:
+                    table_name: outbox_messages
+                    auto_setup: false
+            inbox:
+                dsn: '%env(INBOX_TRANSPORT_DSN)%'
+                options:
+                    table_name: inbox_messages
+                    auto_setup: false
+
+        routing:
+            Neuron\BuildingBlocks\Domain\DomainEventInterface: sync
+            App\Application\Contract\CommandInterface: sync
+            App\Application\Contract\QueryInterface: sync
+            Neuron\BuildingBlocks\Application\Event\DomainEventNotificationInterface: sync
+            Neuron\BuildingBlocks\Infrastructure\Outbox\OutboxMessage: outbox
+            Neuron\BuildingBlocks\Infrastructure\Inbox\InboxMessage: inbox
+            Neuron\BuildingBlocks\Integration\SentIntegrationEventInterface: async
+            Neuron\BuildingBlocks\Integration\ReceivedIntegrationEventInterface: sync
+
+# when@test:
+#    framework:
+#        messenger:
+#            transports:
+#                # replace with your transport name here (e.g., my_transport: 'in-memory://')
+#                # For more Messenger testing tools, see https://github.com/zenstruck/messenger-test
+#                async: 'in-memory://'

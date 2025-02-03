@@ -1,0 +1,19 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Call to an undefined method App\\Application\\Configuration\\Command\\CommandHandlerInterface\:\:__invoke\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: src/Infrastructure/Configuration/Decorator/LoggingCommandHandlerDecorator.php
+
+		-
+			message: '#^Call to an undefined method App\\Application\\Configuration\\Command\\CommandHandlerInterface\:\:__invoke\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: src/Infrastructure/Configuration/Decorator/UnitOfWorkCommandHandlerDecorator.php
+
+		-
+			message: '#^Call to an undefined method App\\Application\\Configuration\\Command\\CommandHandlerInterface\:\:__invoke\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: src/Infrastructure/Configuration/Decorator/ValidationCommandHandlerDecorator.php

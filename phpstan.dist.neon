@@ -1,0 +1,30 @@
+includes:
+    - phpstan-baseline.neon
+
+parameters:
+    level: max
+    checkUninitializedProperties: true
+    paths:
+        - config/
+        - src/
+        - tests/
+    excludePaths:
+        - src/Infrastructure/Migration/*
+        - tests/IntegrationTest/IntegrationTestCase.php
+    ignoreErrors:
+        -
+            message: '#^Property [a-zA-Z0-9\\_]+::\$[a-zA-Z\_]+ is never read, only written.$#'
+
+services:
+    -
+        class: App\Tests\ArchTest\LayersTest
+        tags:
+            - phpat.test
+    -
+        class: App\Tests\ArchTest\DomainTest
+        tags:
+            - phpat.test
+    -
+        class: App\Tests\ArchTest\ApplicationTest
+        tags:
+            - phpat.test
