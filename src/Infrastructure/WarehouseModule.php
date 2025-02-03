@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Infrastructure;
 
-use App\Application\Contract\{{SERVICE_NAME}}ModuleInterface;
 use App\Application\Contract\CommandInterface;
 use App\Application\Contract\QueryInterface;
+use App\Application\Contract\WarehouseModuleInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 
-class {{SERVICE_NAME}}Module implements {{SERVICE_NAME}}ModuleInterface
+class WarehouseModule implements WarehouseModuleInterface
 {
     use HandleTrait;
 

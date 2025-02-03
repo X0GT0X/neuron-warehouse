@@ -75,7 +75,7 @@ inbox-worker-start:
 	@$(SYMFONY) messenger:consume inbox -vv
 
 integration-events-worker-start:
-	@$(SYMFONY) messenger:consume async --queues={{SERVICE_NAME}}
+	@$(SYMFONY) messenger:consume async --queues=warehouse
 
 ## —— Tools 🚀 ——————————————————————————————————————————————————————————————
 php-cs:

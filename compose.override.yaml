@@ -1,7 +1,7 @@
 # Development environment override
 services:
   php:
-    container_name: neuron-{{SERVICE_NAME}}-php
+    container_name: neuron-warehouse-php
     build:
       context: .
       target: frankenphp_dev
@@ -14,9 +14,9 @@ services:
       #- /app/vendor
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.{{SERVICE_NAME}}.rule=Host(`{{SERVICE_NAME}}.neuron.localhost`)"
-      - "traefik.http.routers.{{SERVICE_NAME}}.tls=true"
-      - "traefik.http.routers.{{SERVICE_NAME}}.entrypoints=http,https"
+      - "traefik.http.routers.warehouse.rule=Host(`warehouse.neuron.localhost`)"
+      - "traefik.http.routers.warehouse.tls=true"
+      - "traefik.http.routers.warehouse.entrypoints=http,https"
     networks:
       - neuron
     environment:
